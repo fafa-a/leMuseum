@@ -1,5 +1,23 @@
 @import "./utils/reset.scss";
 
+
+body {
+  height: 100vh;
+  background-image: url(../images/background.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+
+}
+
+.app {
+  width: 90vw;
+  height: 70vh;
+  margin: auto;
+  margin-top: 15vh;
+  background-color: #fff;
+}
+
 h1 {
   text-transform: uppercase;
   font-size: 80px;
