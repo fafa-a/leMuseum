@@ -7,21 +7,25 @@ body {
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
-
 }
 
 .app {
   width: 90vw;
   height: 70vh;
   margin: auto;
-  margin-top: 15vh;
-  background-color: #fff;
+  position: relative;
+  top: 15vh;
+  background-image: url(../images/backApp.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
 }
 
 h1 {
   text-transform: uppercase;
-  font-size: 80px;
+  font-size: 70px;
   font-weight: bold;
   text-align: center;
   font-family: 'Roboto';
+
 }

@@ -4,7 +4,9 @@ import "./css/App.scss";
 function App() {
   return (
     <div className="app">
-      <header className="App-header">{/* <h1>Le Museum</h1> */}</header>
+      <header className="App-header">
+        <h1>Le Museum</h1>
+      </header>
     </div>
   );
 }
