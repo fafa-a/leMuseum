@@ -29,3 +29,50 @@ h1 {
   font-family: 'Roboto';
 
 }
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-left: 20vw;
+}
+
+.homeItems {
+  display: flex;
+  flex-direction: row;
+}
+
+.catchPhrase {
+  color :grey;
+  font-size: 1.2rem;
+  background-color: lightgrey;
+  height: 22vh;
+  width: 20vw;
+  margin-top: 15vh;
+  margin-left: 22vw;
+  padding-top: 5vh;
+  padding-left: 4vh;
+  border-radius: 10%;
+}
+
+.carousel {
+  color :grey;
+  font-size: 1.2rem;
+  background-color: lightgrey;
+  height: 50vh;
+  width: 25vw;
+  margin-top: 5vh;
+  margin-left: 5vw;
+  padding-top: 9vh;
+  padding-left: 4vh;
+  // border-radius: 10%;
+}
+
+.socials {
+  color :grey;
+  font-size: 1.2rem;
+  background-color: lightgrey;
+  height: 10vh;
+  width: 40vw;
+  margin-left: 5vw;
+}
