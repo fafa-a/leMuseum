@@ -1,12 +1,10 @@
 @import "./utils/reset.scss";
 
-
 body {
   height: 100vh;
   background-image: url(../images/background.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
-
 }
 
 .app {
@@ -18,7 +16,6 @@ body {
   background-image: url(../images/backApp.png);
   background-repeat: no-repeat;
   background-size: 100% 100%;
-
 }
 
 h1 {
@@ -26,8 +23,7 @@ h1 {
   font-size: 70px;
   font-weight: bold;
   text-align: center;
-  font-family: 'Roboto';
-
+  font-family: "Roboto";
 }
 
 nav ul {
@@ -43,7 +39,7 @@ nav ul {
 }
 
 .catchPhrase {
-  color :grey;
+  color: grey;
   font-size: 1.2rem;
   background-color: lightgrey;
   height: 22vh;
@@ -56,7 +52,7 @@ nav ul {
 }
 
 .carousel {
-  color :grey;
+  color: grey;
   font-size: 1.2rem;
   background-color: lightgrey;
   height: 50vh;
@@ -69,10 +65,11 @@ nav ul {
 }
 
 .socials {
-  color :grey;
+  display: inline-block;
+  color: grey;
   font-size: 1.2rem;
   background-color: lightgrey;
-  height: 10vh;
-  width: 40vw;
+  //height: 10vh;
+  //width: 40vw;
   margin-left: 5vw;
 }
