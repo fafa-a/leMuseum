@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 
-import Carousel from "./Carousel";
+import TheCarousel from "./Carousel";
 import Socials from "./Socials";
 
 class Home extends Component {
@@ -13,7 +13,7 @@ class Home extends Component {
             <p>PAUL GAUGUIN</p>
           </div>
           <div>
-            <Carousel />
+            <TheCarousel />
           </div>
         </div>
         <div>

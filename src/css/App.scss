@@ -59,12 +59,11 @@ nav ul {
   color :grey;
   font-size: 1.2rem;
   background-color: lightgrey;
-  height: 50vh;
+  height: 52vh;
   width: 25vw;
   margin-top: 5vh;
   margin-left: 5vw;
-  padding-top: 9vh;
-  padding-left: 4vh;
+  padding: 0.5vw;
   // border-radius: 10%;
 }
 
@@ -75,4 +74,9 @@ nav ul {
   height: 10vh;
   width: 40vw;
   margin-left: 5vw;
+}
+
+.carouselImg {
+  height: 45vh;
+  object-fit: contain;
 }
