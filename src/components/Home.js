@@ -6,7 +6,7 @@ import Quote from "./Quote";
 class Home extends Component {
   render() {
     return (
-      <div className="homeItems">
+      <div className="home-items">
         <Quote />
         <TheCarousel />
       </div>
