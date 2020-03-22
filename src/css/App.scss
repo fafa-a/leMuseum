@@ -1,4 +1,5 @@
 @import "./utils/reset.scss";
+$green: #5dfca1;
 
 body {
   height: 100vh;
@@ -27,25 +28,69 @@ h1 {
 }
 
 header {
-  display: flex;
-  justify-content: space-evenly;
+  width: 100%;
   a {
     color: #000;
   }
   a:hover {
     text-decoration: none;
+    color: #000;
+  }
+  a.current {
+    background: $green;
   }
 }
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 nav {
-  width: 100%;
+  display: inline-block;
+  width: 80%;
+  margin-top: 15px;
+  margin-left: 15px;
   ul {
     display: flex;
     justify-content: space-evenly;
   }
 }
+.nav-title {
+  font-size: 1.2rem;
+  text-transform: capitalize;
+  font-weight: 600;
+}
+.cursor {
+  cursor: pointer;
+}
+.menu {
+  width: 75px;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+.i-colored {
+  color: $green;
+  font-size: 1.2rem;
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: column;
+
+  a:hover {
+    color: lighten(#000, 50);
+  }
+}
 
 .homeItems {
   display: flex;
+  position: absolute;
+  top: 50%;
 }
 
 .catchPhrase {
@@ -70,24 +115,30 @@ nav {
   margin-top: 5vh;
   margin-left: 5vw;
   padding: 0.5vw;
-  // border-radius: 10%;
 }
 
 .socials {
+  width: 1.5rem;
   font-size: 1.5rem;
-  display: flex;
-  flex-direction: column;
+  margin-top: 15px;
+  margin-right: 15px;
 
   i {
+    margin-top: 5px;
     color: #f0f0f0;
+    font-size: 1.7rem;
+
+    &:hover {
+      color: $green;
+    }
   }
 }
 
 .green-square {
-  margin-top: 10px;
-  width: 25px;
-  height: 25px;
-  background-color: #5dfca1;
+  margin-bottom: 5px;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: $green;
 }
 
 .socials-phrase {
