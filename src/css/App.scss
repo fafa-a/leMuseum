@@ -26,16 +26,26 @@ h1 {
   font-family: "Roboto";
 }
 
-nav ul {
+header {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin-left: 20vw;
+  justify-content: space-evenly;
+  a {
+    color: #000;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+nav {
+  width: 100%;
+  ul {
+    display: flex;
+    justify-content: space-evenly;
+  }
 }
 
 .homeItems {
   display: flex;
-  flex-direction: row;
 }
 
 .catchPhrase {
@@ -64,19 +74,34 @@ nav ul {
 }
 
 .socials {
-  display: inline-block;
-  color: grey;
-  font-size: 1.2rem;
-  background-color: lightgrey;
-  //height: 10vh;
-  //width: 40vw;
-  margin-left: 5vw;
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+
+  i {
+    color: #f0f0f0;
+  }
 }
-<<<<<<< HEAD
-=======
+
+.green-square {
+  margin-top: 10px;
+  width: 25px;
+  height: 25px;
+  background-color: #5dfca1;
+}
+
+.socials-phrase {
+  margin-top: 10px;
+  line-height: 25px;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(-180deg);
+}
 
 .carouselImg {
   height: 45vh;
   object-fit: contain;
 }
->>>>>>> 3f2471f72e06b965b82473409395abdc615868d4
