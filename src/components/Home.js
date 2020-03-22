@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import Carousel from "./Carousel";
+import TheCarousel from "./Carousel";
 import Socials from "./Socials";
 import Quote from "./Quote";
 
