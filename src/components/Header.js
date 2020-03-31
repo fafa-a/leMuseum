@@ -12,10 +12,10 @@ class Header extends Component {
           <nav>
             <ul>
               <NavLink exact activeClassName="current" to="/pop-art">
-                <li className="nav-title">Pop art</li>
+                <li className="nav-title">Painting</li>
               </NavLink>
               <NavLink exact activeClassName="current" to="/classic-art">
-                <li className="nav-title">Classic art</li>
+                <li className="nav-title">Sculpture</li>
               </NavLink>
             </ul>
           </nav>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
 class Menu extends Component {
   state = {
     showMenu: false
@@ -24,7 +25,7 @@ class Menu extends Component {
       <div className="menu">
         <div className="nav-title cursor" onClick={this.showMenu}>
           Menu
-          <i class="fas fa-caret-down i-colored"></i>
+          <i className="fas fa-caret-down i-colored"></i>
         </div>
         {this.state.showMenu ? (
           <div className="menu-item">
