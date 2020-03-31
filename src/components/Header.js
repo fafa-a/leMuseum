@@ -11,10 +11,10 @@ class Header extends Component {
           <Menu />
           <nav>
             <ul>
-              <NavLink exact activeClassName="current" to="/pop-art">
+              <NavLink exact activeClassName="current" to="/painting">
                 <li className="nav-title">Painting</li>
               </NavLink>
-              <NavLink exact activeClassName="current" to="/classic-art">
+              <NavLink exact activeClassName="current" to="/sculpture">
                 <li className="nav-title">Sculpture</li>
               </NavLink>
             </ul>

@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Header from "./components/Header";
 import Home from "./components/Home";
-import PopArt from "./components/PopArt";
-import ClassicArt from "./components/ClassicArt";
+import Artist from "./components/Artist";
+import Sculpture from "./components/Sculpture";
 
 function App() {
   return (
@@ -15,8 +15,8 @@ function App() {
           <Header />
           <Switch>
             <Route exact path="/" component={Home}></Route>
-            <Route path="/pop-art" component={PopArt}></Route>
-            <Route path="/classic-art" component={ClassicArt}></Route>
+            <Route path="/painting" component={Artist}></Route>
+            <Route path="/sculpture" component={Sculpture}></Route>
           </Switch>
         </div>
       </Router>

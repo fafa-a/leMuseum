@@ -30,8 +30,8 @@ class Menu extends Component {
         {this.state.showMenu ? (
           <div className="menu-item">
             <Link to="/"> Home </Link>
-            <Link to="/pop-art"> Pop art </Link>
-            <Link to="/classic-art"> Classic art</Link>
+            <Link to="/painting"> Painting </Link>
+            <Link to="/sculpture"> Sculpture</Link>
           </div>
         ) : null}
       </div>
