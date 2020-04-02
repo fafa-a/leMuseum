@@ -1,13 +1,18 @@
 import React, { Component } from "react";
+import Data from "../data/Data";
+import Painters from "./Painters";
 
 class Painting extends Component {
   render() {
-    return this.props.name.map(painter => (
-      <h1 key={painter.id}>
-        {painter.firstName} {painter.lastName}
-      </h1>
-    ));
+    return (
+      <div>
+        {Data[0].Painters.map(
+          (painter, { id, firstName, lastName, profilePic }) => (
+            <Painters post={painter} key={painter.id} />
+          )
+        )}
+      </div>
+    );
   }
 }
-
 export default Painting;

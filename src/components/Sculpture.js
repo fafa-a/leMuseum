@@ -1,12 +1,18 @@
 import React, { Component } from "react";
+import Data from "../data/Data";
+import Sculptors from "./Sculptors";
 
 class Sculpture extends Component {
   render() {
-    return this.props.name.map(sculptor => (
-      <h1 key={sculptor.id}>
-        {sculptor.firstName} {sculptor.lastName}
-      </h1>
-    ));
+    return (
+      <div>
+        {Data[0].Sculptors.map(
+          (sculptor, { id, firstName, lastName, profilePic }) => (
+            <Sculptors post={sculptor} key={sculptor.id} />
+          )
+        )}
+      </div>
+    );
   }
 }
 
