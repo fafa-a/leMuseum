@@ -1,4 +1,5 @@
 @import "./utils/reset.scss";
+@import "./pages.scss";
 $green: #5dfca1;
 
 body {
@@ -29,13 +30,16 @@ h1 {
 
 header {
   width: 100%;
+
   a {
     color: #000;
   }
+
   a:hover {
     text-decoration: none;
     color: #000;
   }
+
   a.current {
     background: $green;
   }
@@ -54,19 +58,23 @@ nav {
   width: 80%;
   margin-top: 15px;
   margin-left: 15px;
+
   ul {
     display: flex;
     justify-content: space-evenly;
   }
 }
+
 .nav-title {
   font-size: 1.2rem;
   text-transform: capitalize;
   font-weight: 600;
 }
+
 .cursor {
   cursor: pointer;
 }
+
 .menu {
   width: 75px;
   margin-top: 15px;
@@ -162,6 +170,7 @@ nav {
   width: 1.5rem;
   height: 1.5rem;
   background-color: $green;
+
   &:hover {
     cursor: pointer;
   }

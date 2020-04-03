@@ -20,7 +20,7 @@ function App() {
             <Route exact path="/painting" component={Painting}></Route>
             <Route exact path="/sculpture" component={Sculpture}></Route>
             <Route exact path="/artist/:slug" component={Artist}></Route>
-            <Route path="/" component={Err404}></Route>
+            <Route component={Err404}></Route>
           </Switch>
         </div>
       </Router>
