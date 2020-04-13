@@ -1,0 +1,44 @@
+@import "../utils/var";
+
+.socials {
+    margin-left: auto;
+    width: 25px;
+    height: 175px;
+    font-size: 1.5rem;
+    // margin-top: 15px;
+    margin-right: 15px;
+
+
+
+    i {
+        margin-top: 5px;
+        color: #f0f0f0;
+        font-size: 1.7rem;
+
+        &:hover {
+            color: $green;
+        }
+    }
+}
+
+.green-square {
+    margin-bottom: 5px;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: $green;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.socials-phrase {
+    margin-top: 10px;
+    line-height: 25px;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(-180deg);
+}
