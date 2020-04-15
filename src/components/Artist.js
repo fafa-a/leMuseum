@@ -12,13 +12,16 @@ function Artist() {
   let Data = data[0][speciality][result];
 
   return (
-    <div className="artist-div">
-      <h1 className="artist-h1">{slug} Artwork</h1>
-      <figure className="artist-img">
-        {console.log(params)}
-        {console.log(speciality)}
+    <div className="artist__containerz">
+      <h1 className="artist__h1">{slug} Artwork</h1>
+      <figure className="artist__img">
         {Data.artwork.map((artwork, index) => (
-          <img key={"key" + index} src={artwork} alt="" className="artwork" />
+          <img
+            key={"key" + index}
+            src={artwork}
+            alt=""
+            className="artist__artwork"
+          />
         ))}
       </figure>
     </div>

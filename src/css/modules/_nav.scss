@@ -1,8 +1,6 @@
 .nav {
-    width: 33%;
+    width: 33.3333%;
     justify-content: space-between;
-
-
 
     &__title {
         text-transform: capitalize;
@@ -19,9 +17,6 @@
             background: $green;
         }
 
-        &+.__title {
-            margin-right: 50px;
-        }
     }
 
 }

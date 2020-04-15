@@ -5,7 +5,7 @@ import Painters from "./Painters";
 class Painting extends Component {
   render() {
     return (
-      <div className="container">
+      <div className="containerz">
         {Data[0].Painters.map((painter, index) => (
           <Painters post={painter} key={index} />
         ))}
