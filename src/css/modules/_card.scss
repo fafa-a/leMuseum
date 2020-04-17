@@ -9,7 +9,7 @@
     text-decoration: none;
   }
 
-  & + .link {
+  &+.link {
     margin-left: 15px;
   }
 }
@@ -61,23 +61,44 @@
   }
 
   &__icon {
-    i {
-      padding: $padding;
-      font-size: 1em;
-      font-weight: 600;
+    display: flex;
 
-      color: #000;
+    a:hover {
+      text-decoration: none;
+    }
+
+    .icon-container {
+      width: 25px;
+      height: 25px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       border-radius: 3px;
       box-shadow: 2px 2px 4px darken($green, 50), -1px -1px 2px $green;
 
       &:hover {
-        color: $green;
         box-shadow: 2px 2px 4px $green, -2px -2px 4px $green;
+
+        i {
+          color: $green;
+        }
       }
+
     }
 
-    a + a {
+    i {
+      font-size: 1em;
+      font-weight: 600;
+      color: #000;
+
+
+
+
+    }
+
+    a+a {
       margin-left: 10px;
     }
   }

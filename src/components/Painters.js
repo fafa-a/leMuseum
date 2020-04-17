@@ -4,6 +4,7 @@ import { Link, Redirect } from "react-router-dom";
 class Painters extends Component {
   render() {
     const { post } = this.props;
+
     const wikiUrl = `https://en.wikipedia.org/wiki/
                     ${
                       post.firstName == null
@@ -46,18 +47,22 @@ class Painters extends Component {
                   target="_blank"
                   rel="noopener noreferrer"
                   href={wikiUrl}
-                  onClick={<Redirect to={wikiUrl} />}
+                  onClick={<Redirect to={this.href} />}
                 >
-                  <i className="fab fa-wikipedia-w"></i>
+                  <div className="icon-container">
+                    <i className="fab fa-wikipedia-w"></i>
+                  </div>
                 </a>
 
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href={post.site}
-                  onClick={<Redirect to={post.site} />}
+                  onClick={<Redirect to={this.href} />}
                 >
-                  <i className="fas fa-external-link-alt"></i>
+                  <div className="icon-container">
+                    <i className="fas fa-external-link-alt"></i>
+                  </div>
                 </a>
               </div>
             </div>

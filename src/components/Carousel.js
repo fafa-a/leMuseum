@@ -8,7 +8,7 @@ class TheCarousel extends Component {
     this.state = {
       nextIcon: null,
       prevIcon: null,
-      indicators: null
+      indicators: null,
     };
   }
 
@@ -19,7 +19,7 @@ class TheCarousel extends Component {
         <Carousel.Item>
           <img
             className="carouselImg d-block w-100"
-            src={require("../images/kaws/kaws1.jpg")}
+            src={require("../images/Kaws/Kaws1.jpg")}
             alt="First slide"
           />
           <Carousel.Caption>
@@ -39,7 +39,7 @@ class TheCarousel extends Component {
         <Carousel.Item>
           <img
             className="carouselImg d-block w-100"
-            src={require("../images/kaws/kaws2.jpg")}
+            src={require("../images/Kaws/Kaws2.jpg")}
             alt="Second slide"
           />
           <Carousel.Caption>
@@ -59,7 +59,7 @@ class TheCarousel extends Component {
         <Carousel.Item>
           <img
             className="carouselImg d-block w-100"
-            src={require("../images/kaws/kaws3.jpg")}
+            src={require("../images/Kaws/Kaws3.jpg")}
             alt="Third slide"
           />
           <Carousel.Caption>

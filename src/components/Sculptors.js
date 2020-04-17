@@ -49,17 +49,21 @@ class Sculptors extends Component {
                   target="_blank"
                   rel="noopener noreferrer"
                   href={wikiUrl}
-                  onClick={<Redirect to={wikiUrl} />}
+                  onClick={<Redirect to={this.href} />}
                 >
-                  <i className="fab fa-wikipedia-w"></i>
+                  <div className="icon-container">
+                    <i className="fab fa-wikipedia-w"></i>
+                  </div>
                 </a>
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href={post.site}
-                  onClick={<Redirect to={post.site} />}
+                  onClick={<Redirect to={this.href} />}
                 >
-                  <i className="fas fa-external-link-alt"></i>
+                  <div className="icon-container">
+                    <i className="fas fa-external-link-alt"></i>
+                  </div>
                 </a>
               </div>
             </div>
