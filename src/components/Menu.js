@@ -23,12 +23,13 @@ class Menu extends Component {
   render() {
     return (
       <div className="menu">
-        <div className="menu__title cursor" onClick={this.showMenu}>
+        <div className="menu__title" onClick={this.showMenu}>
           Menu
           <i className="fas fa-caret-down menu__triangle"></i>
         </div>
         {this.state.showMenu ? (
           <div className="menu__dropdown">
+<<<<<<< HEAD
             <ul>
               <li>
                 <Link to="/" className="menu__dropdown__item">
@@ -46,6 +47,17 @@ class Menu extends Component {
                 </Link>
               </li>
             </ul>
+=======
+            <Link to="/" className="menu__dropdown__item">
+              Home
+            </Link>
+            <Link to="/painting" className="menu__dropdown__item">
+              Painting
+            </Link>
+            <Link to="/sculpture" className="menu__dropdown__item">
+              Sculpture
+            </Link>
+>>>>>>> fab
           </div>
         ) : null}
       </div>

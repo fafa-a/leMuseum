@@ -1,9 +1,16 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 class Painters extends Component {
   render() {
     const { post } = this.props;
+
+    const wikiUrl = `https://en.wikipedia.org/wiki/
+                    ${
+                      post.firstName == null
+                        ? post.lastName
+                        : post.firstName + "_" + post.lastName
+                    }`;
 
     return (
       <Link
@@ -27,12 +34,40 @@ class Painters extends Component {
               }
             />
           </figure>
-          <h3 className="kard__name">
-            {post.firstName == null
-              ? post.lastName
-              : post.firstName + " " + post.lastName}
-          </h3>
-          <p className="kard__descrition">{post.description}</p>
+          <article className="kard__content">
+            <div className="kard__head">
+              <h3 className="kard__name">
+                {post.firstName == null
+                  ? post.lastName
+                  : post.firstName + " " + post.lastName}
+              </h3>
+
+              <div className="kard__icon">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={wikiUrl}
+                  onClick={<Redirect to={this.href} />}
+                >
+                  <div className="icon-container">
+                    <i className="fab fa-wikipedia-w"></i>
+                  </div>
+                </a>
+
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={post.site}
+                  onClick={<Redirect to={this.href} />}
+                >
+                  <div className="icon-container">
+                    <i className="fas fa-external-link-alt"></i>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <p className="kard__descrition">{post.description}</p>
+          </article>
         </div>
       </Link>
     );

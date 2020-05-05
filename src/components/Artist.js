@@ -1,27 +1,18 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { Component } from "react";
+
 import data from "../data/Data";
+import Slider from "./Slider";
 
-function Artist() {
-  let { slug } = useParams();
-  let url = new URL(window.location);
-  let speciality = url.hash.substr(1);
-  let params = url.searchParams.get("id");
-  let id = parseInt(params, 10);
-  let result = id - 1;
-  let Data = data[0][speciality][result];
+class Artist extends Component {
+  render() {
+    const url = new URL(window.location);
+    const speciality = url.hash.substr(1);
+    const params = url.searchParams.get("id");
+    const id = parseInt(params, 10);
+    const result = id - 1;
+    const Data = data[0][speciality][result];
 
-  return (
-    <div className="artist-div">
-      <h1 className="artist-h1">{slug} Artwork</h1>
-      <figure className="artist-img">
-        {console.log(params)}
-        {console.log(speciality)}
-        {Data.artwork.map((artwork, index) => (
-          <img key={"key" + index} src={artwork} alt="" className="artwork" />
-        ))}
-      </figure>
-    </div>
-  );
+    return <Slider post={Data} key={Data.id} />;
+  }
 }
 export default Artist;

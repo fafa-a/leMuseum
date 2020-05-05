@@ -1,26 +1,15 @@
 @import "../utils/var";
 
-.artist {
+// .artist {
 
-    &__containerz {
-        display: flex;
-        flex-direction: column;
-    }
+//     // &__containerz {
+//     //     display: flex;
+//     //     flex-direction: column;
+//     // }
 
-    &__h1 {
-        background-color: $green;
-        margin: 0 auto;
-    }
+//     // &__h1 {
+//     //     background-color: $green;
+//     //     margin: 0 auto;
+//     // }
 
-    &__img {
-        max-width: 90%;
-        margin: auto;
-        margin-top: 40px;
-        display: flex;
-        flex-direction: row;
-    }
-
-    &__artwork {
-        max-width: 33.3%;
-    }
-}
+// }

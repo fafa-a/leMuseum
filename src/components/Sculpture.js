@@ -5,12 +5,10 @@ import Sculptors from "./Sculptors";
 class Sculpture extends Component {
   render() {
     return (
-      <div>
-        {Data[0].Sculptors.map(
-          (sculptor, { id, firstName, lastName, profilePic }) => (
-            <Sculptors post={sculptor} key={sculptor.id} />
-          )
-        )}
+      <div className="containerz">
+        {Data[0].Sculptors.map((sculptor, index) => (
+          <Sculptors post={sculptor} key={index} />
+        ))}
       </div>
     );
   }
