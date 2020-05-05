@@ -1,0 +1,95 @@
+@import "../utils/var";
+
+.link {
+  max-width: 33.3333%;
+  margin-top: 10px;
+
+  &:hover {
+    color: #000;
+    text-decoration: none;
+  }
+
+  & + .link {
+    margin-left: 15px;
+  }
+}
+
+.kard {
+  background-color: #fff;
+  color: #000;
+
+  border-radius: 3px;
+  box-shadow: 5px 5px 10px #191919, -3px -3px 6px #d1d1d1;
+
+  &__img {
+    margin-top: -$padding * 2;
+    margin-left: -$padding * 2;
+    margin-right: -$padding * 2;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+
+    width: 100%;
+    height: 300px;
+
+    img {
+      border-radius: 3px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__content {
+    padding: $padding * 2;
+  }
+
+  &__head {
+    display: flex;
+    justify-content: space-between;
+    line-height: 2em;
+  }
+
+  &__name {
+    padding-top: $padding * 2;
+    margin: 0;
+    padding-left: $padding * 2;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  &__icon {
+    i {
+      padding: $padding;
+      font-size: 1em;
+      font-weight: 600;
+
+      color: #000;
+
+      border-radius: 3px;
+      box-shadow: 2px 2px 4px darken($green, 50), -1px -1px 2px $green;
+
+      &:hover {
+        color: $green;
+        box-shadow: 2px 2px 4px $green, -2px -2px 4px $green;
+      }
+    }
+
+    a + a {
+      margin-left: 10px;
+    }
+  }
+
+  // &:hover {
+  //     background-color: #f1f1f1;
+  // }
+
+  &__descrition {
+    margin-top: 10px;
+    margin-bottom: 0;
+    padding: 0 $padding * 2;
+    border-top: 2px solid #d9d9d9;
+  }
+}
