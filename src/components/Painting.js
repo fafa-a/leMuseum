@@ -5,12 +5,10 @@ import Painters from "./Painters";
 class Painting extends Component {
   render() {
     return (
-      <div>
-        {Data[0].Painters.map(
-          (painter, { id, firstName, lastName, profilePic }) => (
-            <Painters post={painter} key={painter.id} />
-          )
-        )}
+      <div className="containerz">
+        {Data[0].Painters.map((painter, index) => (
+          <Painters post={painter} key={index} />
+        ))}
       </div>
     );
   }

@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 class Menu extends Component {
   state = {
-    showMenu: false
+    showMenu: false,
   };
 
-  showMenu = e => {
+  showMenu = (e) => {
     e.preventDefault();
 
     this.setState({ showMenu: true }, () => {
@@ -23,15 +23,29 @@ class Menu extends Component {
   render() {
     return (
       <div className="menu">
-        <div className="nav-title cursor" onClick={this.showMenu}>
+        <div className="menu__title cursor" onClick={this.showMenu}>
           Menu
-          <i className="fas fa-caret-down i-colored"></i>
+          <i className="fas fa-caret-down menu__triangle"></i>
         </div>
         {this.state.showMenu ? (
-          <div className="menu-item">
-            <Link to="/"> Home </Link>
-            <Link to="/painting"> Painting </Link>
-            <Link to="/sculpture"> Sculpture</Link>
+          <div className="menu__dropdown">
+            <ul>
+              <li>
+                <Link to="/" className="menu__dropdown__item">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to="/painting" className="menu__dropdown__item">
+                  Painting
+                </Link>
+              </li>
+              <li>
+                <Link to="/sculpture" className="menu__dropdown__item">
+                  Sculpture
+                </Link>
+              </li>
+            </ul>
           </div>
         ) : null}
       </div>

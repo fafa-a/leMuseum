@@ -1,0 +1,56 @@
+@import "./scss/base/base";
+@import "./scss/layouts/layouts";
+@import "./scss/components/components";
+@import "./scss/pages/pages";
+
+
+.app {
+  width: 90vw;
+  height: 70vh;
+  margin: auto;
+  position: relative;
+  top: 100px;
+
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+  }
+
+  &::before {
+    left: 0;
+    width: 60%;
+    height: 100%;
+    background-color: #fff;
+  }
+
+  &::after {
+    right: 0;
+    width: 40%;
+    background: url("/public/augustine-wong-T0BYurbDK_M-unsplash.jpg");
+  }
+
+
+}
+
+.home-items {
+  display: flex;
+  position: relative;
+  top: -19vh;
+}
+
+.catchPhrase {
+  color: grey;
+  font-size: 1.2rem;
+  background-color: lightgrey;
+  height: 22vh;
+  width: 20vw;
+  margin-top: 15vh;
+  margin-left: 22vw;
+  padding-top: 5vh;
+  padding-left: 4vh;
+  border-radius: 10%;
+}

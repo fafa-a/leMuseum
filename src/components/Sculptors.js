@@ -6,9 +6,17 @@ class Sculptors extends Component {
     const { post } = this.props;
     return (
       <div>
-        <Link to={"/artist/" + post.lastName} key={post.id}>
+        <Link
+          to={{
+            pathname: "/artist/" + post.lastName,
+            search: "?id=" + post.id,
+            hash: "#Sculptors",
+          }}
+          key={post.id}
+        >
           {post.firstName}&nbsp;
           {post.lastName}
+          <img key={post.id} src={post.profilePic} alt="" width="100" />
         </Link>
       </div>
     );

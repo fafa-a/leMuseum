@@ -1,0 +1,63 @@
+@import "var";
+
+/*
+*Html tag here + font !!!!
+*/
+
+.main {
+  position: relative;
+  height: 100vh;
+
+  // background-image: url(../images/background.png);
+  // background-repeat: no-repeat;
+  // background-size: 100% 100%;
+
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    height: 100%;
+  }
+
+  &::before {
+    left: 0;
+    width: 60%;
+    background: url("/src/images/augustine-wong-T0BYurbDK_M-unsplash.jpg");
+    background-size: 100%;
+  }
+
+  &::after {
+    right: 0;
+    width: 40%;
+    // background-color: red;
+    background: $gradient;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: black;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-size: 70px;
+  font-weight: bold;
+  text-align: center;
+  font-family: "Roboto";
+}
+
+figure {
+  display: block;
+}
+
+img {
+  display: block;
+}

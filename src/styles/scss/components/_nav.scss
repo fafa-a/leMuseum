@@ -1,0 +1,30 @@
+nav {
+    width: 33.333%;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+
+
+    &__title {
+        text-transform: capitalize;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #000;
+
+        &:hover {
+            text-decoration: none;
+            color: #000;
+        }
+
+        &.--current {
+            background: $green;
+        }
+
+        &+.__title {
+            margin-right: 50px;
+        }
+    }
+
+}

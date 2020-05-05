@@ -1,0 +1,31 @@
+@import "../base/var";
+
+.menu {
+    @extend .nav__title;
+    width: 33.333%;
+    margin-top: 15px;
+    margin-left: 15px;
+    cursor: pointer;
+
+
+    &__triangle {
+        padding-left: 1px;
+        font-size: 1.2rem;
+        color: $green;
+    }
+
+    &__dropdown {
+        display: flex;
+        flex-direction: column;
+        padding-inline-start: 10px;
+
+        &__item {
+            color: #000;
+
+            &:hover {
+                color: lighten(#000, 50);
+                text-decoration: none;
+            }
+        }
+    }
+}
