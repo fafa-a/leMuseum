@@ -7,10 +7,10 @@ class Painters extends Component {
 
     const wikiUrl = `https://en.wikipedia.org/wiki/
                     ${
-                      post.firstName == null
-                        ? post.lastName
-                        : post.firstName + "_" + post.lastName
-                    }`;
+      post.firstName == null
+        ? post.lastName
+        : post.firstName + "_" + post.lastName
+      }`;
 
     return (
       <Link

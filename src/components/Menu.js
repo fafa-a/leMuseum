@@ -29,25 +29,6 @@ class Menu extends Component {
         </div>
         {this.state.showMenu ? (
           <div className="menu__dropdown">
-<<<<<<< HEAD
-            <ul>
-              <li>
-                <Link to="/" className="menu__dropdown__item">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/painting" className="menu__dropdown__item">
-                  Painting
-                </Link>
-              </li>
-              <li>
-                <Link to="/sculpture" className="menu__dropdown__item">
-                  Sculpture
-                </Link>
-              </li>
-            </ul>
-=======
             <Link to="/" className="menu__dropdown__item">
               Home
             </Link>
@@ -57,7 +38,6 @@ class Menu extends Component {
             <Link to="/sculpture" className="menu__dropdown__item">
               Sculpture
             </Link>
->>>>>>> fab
           </div>
         ) : null}
       </div>

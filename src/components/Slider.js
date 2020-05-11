@@ -5,25 +5,26 @@ const Slider = (post) => {
   const data = post.post;
   const name = `${
     data.firstName == null ? data.lastName : data.firstName + data.lastName
-  }`;
-  // calcul de l'img par rapport au profilepics pour set la class Acitve
-  const urlProps = data.artwork[0].src;
+    }`;
 
   // iteration pour l'index dynamique de la src et du state
-
   const src = data.artwork;
   const items = src.keys();
-  // for (const key of iterator) {
-  //   console.log(key);
-  // }
+
+  // calcul de l'img par rapport au profilepics pour set la class Active
+  const urlProps = data.artwork;
+  // console.log(urlProps);
+
   let i = [1];
 
-  let imageList = useRef(null);
-  let sliderList = useRef(null);
+  let imageList = useRef();
+  let sliderList = useRef();
+
+  const imageWidth = 340;
 
   const [state, setState] = useState({
     isActive: true,
-    isVisible: false,
+    isHidden: false
   });
 
   useEffect(() => {
@@ -32,15 +33,29 @@ const Slider = (post) => {
     });
   }, []);
 
+  const slideLeft = (index, duration, multiplied = 1) => {
+    TweenLite.to(imageList.children[index], duration, {
+      x: -imageWidth * multiplied,
+      ease: Power3.easeout
+    })
+  }
+
   const nextSlide = () => {
     for (const item of items) {
       if (imageList.children[item].classList.contains("active")) {
-        setState({ isActive: false, isVisible: true });
-      } else if (imageList.Children[item].classList.contains("active")) {
-        setState({ isActive: true, isVisible: false });
+        setState({ isActive: false, isHidden: true });
+
+        slideLeft(0, 1)
+        slideLeft(item, 1)
+
       }
+      else if (imageList.Children[item].classList.contains("active")) {
+        setState({ isActive: true, isHidden: false });
+      }
+
     }
   };
+
 
   return (
     <div className="slider-content">
@@ -58,18 +73,22 @@ const Slider = (post) => {
                 <li
                   key={index}
                   className={`${
-                    urlProps === item.src
+                    urlProps[index].src === item.src
                       ? state.isActive
                         ? "active"
                         : ""
-                      : "notActive"
-                  } ${"slide" + i++}`}
+                      : ""
+                    }`}
                 >
+
                   <img key={"key" + index} src={item.src} alt={item.alt} />;
+                  }
+                  {/* {console.log(urlProps[index].src)} */}
                   {/* {console.log(typeof urlProps)};{console.log(typeof item.src)}
                   {console.log(urlProps)}
                   {console.log(item.src)}
-                  {console.log(urlProps === item.src)} */}
+                  {console.log(urlProps === item.src)}
+                {console.log("**********************")} */}
                 </li>
               ))}
             </ul>
@@ -98,7 +117,7 @@ const Slider = (post) => {
           </span>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
