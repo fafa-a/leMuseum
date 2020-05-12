@@ -1,47 +1,53 @@
-import React, { Component } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
-class Menu extends Component {
-  state = {
-    showMenu: false,
-  };
+const Menu = () => {
+  const ref = useRef();
+  const [open, setOpen] = useState(false)
 
-  showMenu = (e) => {
-    e.preventDefault();
+  useOnClickOutside(ref, () => setOpen(false))
 
-    this.setState({ showMenu: true }, () => {
-      document.addEventListener("click", this.closeMenu);
-    });
-  };
+  function useOnClickOutside(ref, handler) {
+    useEffect(
+      () => {
+        const listener = event => {
+          // Do nothing if clicking ref's element or descendent elements
+          if (!ref.current || ref.current.contains(event.target)) {
+            return;
+          }
+          handler(event);
+        };
 
-  closeMenu = () => {
-    this.setState({ showMenu: false }, () => {
-      document.removeEventListener("click", this.closeMenu);
-    });
-  };
-
-  render() {
-    return (
-      <div className="menu">
-        <div className="menu__title" onClick={this.showMenu}>
-          Menu
-          <i className="fas fa-caret-down menu__triangle"></i>
-        </div>
-        {this.state.showMenu ? (
-          <div className="menu__dropdown">
-            <Link to="/" className="menu__dropdown__item">
-              Home
-            </Link>
-            <Link to="/painting" className="menu__dropdown__item">
-              Painting
-            </Link>
-            <Link to="/sculpture" className="menu__dropdown__item">
-              Sculpture
-            </Link>
-          </div>
-        ) : null}
-      </div>
+        document.addEventListener('mousedown', listener);
+        return () => {
+          document.removeEventListener('mousedown', listener);
+        };
+      },
+      [ref, handler]
     );
   }
+
+  return (
+    <div className="menu">
+      <div ref={ref} className="menu__title" onClick={() => setOpen(!open)} >
+        Menu
+          <i className="fas fa-caret-down menu__triangle"></i>
+      </div>
+      {open ? (
+        <div className="menu__dropdown">
+          <Link to="/" className="menu__dropdown__item">
+            Home
+            </Link>
+          <Link to="/painting" className="menu__dropdown__item">
+            Painting
+            </Link>
+          <Link to="/sculpture" className="menu__dropdown__item">
+            Sculpture
+            </Link>
+        </div>
+      ) : null}
+    </div>
+  );
 }
+
 export default Menu;

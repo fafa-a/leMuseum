@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { TweenLite, Power3 } from "gsap";
 
 const Slider = (post) => {
+
   const data = post.post;
   const name = `${
     data.firstName == null ? data.lastName : data.firstName + data.lastName
@@ -39,6 +40,7 @@ const Slider = (post) => {
       ease: Power3.easeout
     })
   }
+
 
   const nextSlide = () => {
     for (const item of items) {
