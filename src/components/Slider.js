@@ -18,15 +18,21 @@ const Slider = (post) => {
 
   let i = [1];
 
-  let imageList = useRef();
-  let sliderList = useRef();
+  let imageList = useRef(null);
+  let sliderList = useRef(null);
+  let slide = useRef(null);
 
-  const imageWidth = 340;
+  const imageWidth = 100;
 
-  const [state, setState] = useState({
-    isActive: true,
-    isHidden: false
-  });
+  const [x, setX] = useState(0);
+
+  // const [state, setState] = useState({
+
+  //   // isActive: true,
+  //   // currentSlide:true
+  //   // nextSlide:false 
+  //   //prevSlide:false
+  // });
 
   useEffect(() => {
     TweenLite.to(sliderList.children[0], 0, {
@@ -34,35 +40,102 @@ const Slider = (post) => {
     });
   }, []);
 
+
   const slideLeft = (index, duration, multiplied = 1) => {
     TweenLite.to(imageList.children[index], duration, {
       x: -imageWidth * multiplied,
       ease: Power3.easeout
-    })
+    });
   }
+  const slideRight = (index, duration, multiplied = 1) => {
+    TweenLite.to(imageList.children[index], duration, {
+      x: imageWidth * multiplied,
+      ease: Power3.easeout
+    });
+  }
+
+  const scale = (index, duration) => {
+    TweenLite.from(imageList.children[index], duration, {
+      scale: 1.3,
+      ease: Power3.easeout
+    });
+  };
+
+  const fadeOut = (index, duration) => {
+    TweenLite.to(sliderList.children[index], duration, {
+      opacity: 0
+    });
+  };
+
+  const fadeIn = (index, duration) => {
+    TweenLite.to(sliderList.children[index], duration, {
+      opacity: 1,
+      delay: 1
+    });
+  };
 
 
   const nextSlide = () => {
-    for (const item of items) {
-      if (imageList.children[item].classList.contains("active")) {
-        setState({ isActive: false, isHidden: true });
+    x === -imageWidth * (src.length - 1) ? setX(0) : setX(x - imageWidth)
+    const next = x.toString().substr(1, 1);
+    const current = next - 1;
 
-        slideLeft(0, 1)
-        slideLeft(item, 1)
+    console.log(x);
+    console.log(current);
+    console.log(next);
 
-      }
-      else if (imageList.Children[item].classList.contains("active")) {
-        setState({ isActive: true, isHidden: false });
-      }
+    fadeOut(current === -1 ? 0 : current, 1)
+    fadeIn(next, 1)
 
-    }
+    // for (const item of items) {
+    //   scale(item, 1)
+    //   fadeOut(item, 1)
+    //   fadeIn(item, 1)
+    // }
+    // for (const item of items) {
+    //   if (imageList.children[item].classList.contains("active")) {
+    //     setState({ isActive: false, isHidden: true });
+
+    //     slideLeft(0, 1)
+    //     slideLeft(item, 1)
+    //     scale(item, 1)
+    //     fadeOut(item, 1)
+    //     fadeIn(1, 1)
+    //   }
+    //   else if (imageList.Children[item].classList.contains("active")) {
+    //     setState({ isActive: true, isHidden: false });
+    //   }
+    // }
+  };
+
+  const prevSlide = () => {
+    x === 0 ? setX(-imageWidth * (src.length - 1)) : setX(x + imageWidth)
+
+    // for (const item of items) {
+    //   if (imageList.children[item].classList.contains("active")) {
+    //     setState({ isActive: false, isHidden: true });
+
+
+    //     slideLeft(2, 0, 3)
+    //     slideLeft(item, 1)
+    //     slideRight(0, 1)
+    //     slideRight(item, 1)
+    //     // scale(item, 1)
+    //     // fadeOut(item, 1)
+    //     // fadeIn(1, 1)
+    //   }
+    //   else if (imageList.Children[item].classList.contains("active")) {
+    //     setState({ isActive: true, isHidden: false });
+    //   }
+    // }
   };
 
 
   return (
-    <div className="slider-content">
+
+    < div className="slider-content" >
       <div className="slider">
-        <div className="arrows">
+        <div onClick={prevSlide} className="arrows">
           <span>
             <i className="fas fa-long-arrow-alt-left"></i>
           </span>
@@ -73,24 +146,18 @@ const Slider = (post) => {
             <ul ref={(el) => (imageList = el)}>
               {data.artwork.map((item, index) => (
                 <li
+                  ref={slide}
                   key={index}
-                  className={`${
-                    urlProps[index].src === item.src
-                      ? state.isActive
-                        ? "active"
-                        : ""
-                      : ""
-                    }`}
+                  style={{ transform: `translate(${x}%)` }}
+                // className={`${
+                //   urlProps[index].src === item.src
+                //     ? state.isActive
+                //       ? "active"
+                //       : ""
+                //     : ""
+                //   }`}
                 >
-
                   <img key={"key" + index} src={item.src} alt={item.alt} />;
-                  }
-                  {/* {console.log(urlProps[index].src)} */}
-                  {/* {console.log(typeof urlProps)};{console.log(typeof item.src)}
-                  {console.log(urlProps)}
-                  {console.log(item.src)}
-                  {console.log(urlProps === item.src)}
-                {console.log("**********************")} */}
                 </li>
               ))}
             </ul>
