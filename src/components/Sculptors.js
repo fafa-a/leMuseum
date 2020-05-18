@@ -6,13 +6,13 @@ class Sculptors extends Component {
     const { post } = this.props;
     const wikiUrl = `https://en.wikipedia.org/wiki/
                     ${
-                      post.firstName == null
-                        ? post.lastName
-                        : post.firstName + "_" + post.lastName &&
-                          post.lastName === "Jenkins"
-                        ? post.firstName + "_" + post.lastName + "_(artist)"
-                        : null
-                    }`;
+      post.firstName == null
+        ? post.lastName
+        : post.firstName + "_" + post.lastName &&
+          post.lastName === "Jenkins"
+          ? post.firstName + "_" + post.lastName + "_(artist)"
+          : null
+      }`;
 
     return (
       <Link

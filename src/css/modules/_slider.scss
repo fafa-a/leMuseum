@@ -4,31 +4,56 @@ $text: #2e293c;
 $secondary: #a09da6;
 
 .slider-content {
-    height: 100vh;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    // height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #fff;
+    z-index: 2;
 
-    // DIV DESIGN FUCKED UP
-
-    // &:after {
+    // &:before {
     //     content: "";
-    //     position: absolute;
-    //     width: 900px;
-    //     height: 550px;
-    //     background: #f2f2f6;
     //     right: 0;
     //     bottom: 0;
-    //     opacity: 0.8;
-    //     z-index: -10;
+    //     position: absolute;
+    //     width: 800px;
+    //     height: 400px;
+    //     background: #000;
+    //     opacity: .1;
+    //     z-index: -1;
     // }
 
     .slider {
-        width: 1280px;
-        min-width: 1280px;
+        // width: 1280px;
+        // min-width: 1280px;
+        width: 100%;
         height: 600px;
         position: relative;
+
+        .home {
+            position: relative;
+            top: 10px;
+            left: 150px;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 3px;
+            box-shadow: 2px 2px 4px darken($yellow, 50), -1px -1px 2px $yellow;
+            color: #000;
+
+            &:hover {
+                box-shadow: 2px 2px 4px $yellow, -2px -2px 4px $yellow;
+
+                i {
+                    color: $yellow;
+                }
+            }
+        }
 
         .arrows {
             position: absolute;
@@ -41,9 +66,12 @@ $secondary: #a09da6;
             cursor: pointer;
             border-radius: 8px;
             transition: 0.3s ease-in-out;
+            // opacity: 0;
+            z-index: 1;
 
             &:hover {
                 box-shadow: 0px 0px 30px rgba(0, 0, 80, 0.1);
+                opacity: 1;
             }
 
             &__right {
@@ -58,46 +86,47 @@ $secondary: #a09da6;
             height: 600px;
 
             &__image {
-                width: 500px;
-                height: 600px;
+                // margin-left: 75px;
+                width: 768px;
+                height: 432px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
 
-                &:after {
-                    content: "";
-                    position: absolute;
-                    width: 200px;
-                    height: 200px;
-                    background: #3f56da;
-                    left: 140px;
-                    top: 0;
-                    border-radius: 100%;
-                    z-index: -9;
-                }
+                // &:after {
+                //   content: "";
+                //   position: absolute;
+                //   width: 200px;
+                //   height: 200px;
+                //   background: #3f56da;
+                //   left: 140px;
+                //   top: 0;
+                //   border-radius: 100%;
+                //   z-index: -1;
+                // }
 
                 ul {
                     display: flex;
                     position: absolute;
                     overflow: hidden;
-                    height: 460px;
-                    width: 340px;
+                    width: 768px;
+                    height: 432px;
                     box-shadow: 0 0 40px rgba($color: #000000, $alpha: 0.25);
 
                     li {
-                        height: 460px;
-                        width: 340px;
+                        width: 768px;
+                        height: 432px;
 
                         img {
-                            height: 460px;
-                            width: 340px;
+                            width: 768px;
+                            height: 432px;
                         }
                     }
                 }
             }
 
-
             &__content {
+                padding-left: 25px;
                 width: 500px;
                 height: 600px;
                 display: flex;
@@ -118,48 +147,71 @@ $secondary: #a09da6;
                         position: absolute;
                         opacity: 0;
 
+
                         // AJUSTER DE FOU OU A DELETE
                         // METS EN VALEUR DES PARTIES DU CONTENT INNER
                         // SOULIGNEMENT LARGE
 
-                        &:nth-child(1) {
-                            &:after {
-                                content: "";
-                                position: absolute;
-                                height: 12px;
-                                width: 310px;
-                                background: $green;
-                                opacity: 0.3;
-                                left: 0;
-                                top: 206px;
-                            }
+                        &:before {
+                            content: "";
+                            position: absolute;
+                            height: 25px;
+                            width: 310px;
+                            background: $green;
+                            opacity: 0.3;
+                            left: 0;
+                            top: 150px;
                         }
 
-                        &:nth-child(2) {
-                            &:after {
-                                content: "";
-                                position: absolute;
-                                height: 12px;
-                                width: 148px;
-                                background: $green;
-                                opacity: 0.3;
-                                left: 54px;
-                                top: 126px;
-                            }
+                        &:after {
+                            content: "";
+                            position: absolute;
+                            height: 12px;
+                            width: 170px;
+                            background: $yellow;
+                            opacity: 0.3;
+                            left: 0;
+                            top: 235px;
                         }
 
-                        &:nth-child(3) {
-                            &:after {
-                                content: "";
-                                position: absolute;
-                                height: 12px;
-                                width: 280px;
-                                background: $green;
-                                opacity: 0.3;
-                                left: 144px;
-                                top: 166px;
-                            }
-                        }
+                        // &:nth-child(1) {
+                        //     &:after {
+                        //         content: "";
+                        //         position: absolute;
+                        //         height: 12px;
+                        //         width: 310px;
+                        //         background: $green;
+                        //         opacity: 0.3;
+                        //         left: 0;
+                        //         top: 206px;
+                        //     }
+                        // }
+
+                        // &:nth-child(2) {
+                        //     &:after {
+                        //         content: "";
+                        //         position: absolute;
+                        //         height: 12px;
+                        //         width: 148px;
+                        //         background: $green;
+                        //         opacity: 0.3;
+                        //         left: 54px;
+                        //         top: 126px;
+                        //     }
+                        // }
+
+                        // &:nth-child(3) {
+                        //     &:after {
+                        //         content: "";
+                        //         position: absolute;
+                        //         height: 12px;
+                        //         width: 280px;
+                        //         background: $green;
+                        //         opacity: 0.3;
+                        //         left: 144px;
+                        //         top: 166px;
+                        //     }
+                        // }
 
                         .content__inner {
                             width: 500px;
@@ -185,7 +237,6 @@ $secondary: #a09da6;
                                 letter-spacing: 0.88px;
                                 line-height: 28px;
                                 color: $secondary;
-
                             }
                         }
                     }
