@@ -33,24 +33,54 @@ $secondary: #a09da6;
         height: 600px;
         position: relative;
 
-        .home {
-            position: relative;
+        .close {
+            float: left;
             top: 10px;
-            left: 150px;
-            width: 25px;
-            height: 25px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 3px;
-            box-shadow: 2px 2px 4px darken($yellow, 50), -1px -1px 2px $yellow;
-            color: #000;
+            left: 100px;
+            padding: 0 20px;
 
-            &:hover {
-                box-shadow: 2px 2px 4px $yellow, -2px -2px 4px $yellow;
+            position: relative;
+            // background: #ecf0f3;
+            // box-shadow: 4px 4px 4px 0px #d1d9e6 inset,
+            //     -4px -4px 4px 0px #fff inset;
+
+
+            a {
+                display: flex;
+                color: #000;
+                text-decoration: none;
+                align-items: center;
+
+                p {
+                    font-size: 1rem;
+                    line-height: 25px;
+                    margin-bottom: 0;
+
+                }
 
                 i {
-                    color: $yellow;
+                    font-size: 14px;
+                }
+
+                .cross {
+                    // position: relative;
+                    width: 18px;
+                    height: 18px;
+                    margin-left: .2em;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 3px;
+                    box-shadow: 2px 2px 4px darken($green, 50), -1px -1px 2px $green;
+
+                    &:hover {
+                        box-shadow: 2px 2px 4px $green, -2px -2px 4px $green;
+                        text-decoration: none;
+                        color: $green;
+
+                    }
+
+
                 }
             }
         }
@@ -66,7 +96,7 @@ $secondary: #a09da6;
             cursor: pointer;
             border-radius: 8px;
             transition: 0.3s ease-in-out;
-            // opacity: 0;
+            opacity: 0;
             z-index: 1;
 
             &:hover {
@@ -76,6 +106,10 @@ $secondary: #a09da6;
 
             &__right {
                 right: 0;
+            }
+
+            &--visible {
+                opacity: 1;
             }
         }
 
@@ -126,11 +160,11 @@ $secondary: #a09da6;
             }
 
             &__content {
-                padding-left: 25px;
+                padding-left: 30px;
                 width: 500px;
                 height: 600px;
                 display: flex;
-                align-items: center;
+                align-items: flex-end;
 
                 ul {
                     position: absolute;

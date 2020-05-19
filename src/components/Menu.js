@@ -3,51 +3,47 @@ import { Link } from "react-router-dom";
 
 const Menu = () => {
   const ref = useRef();
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
-  useOnClickOutside(ref, () => setOpen(false))
+  useOnClickOutside(ref, () => setOpen(false));
 
   function useOnClickOutside(ref, handler) {
-    useEffect(
-      () => {
-        const listener = event => {
-          // Do nothing if clicking ref's element or descendent elements
-          if (!ref.current || ref.current.contains(event.target)) {
-            return;
-          }
-          handler(event);
-        };
-
-        document.addEventListener('mousedown', listener);
-        return () => {
-          document.removeEventListener('mousedown', listener);
-        };
-      },
-      [ref, handler]
-    );
+    useEffect(() => {
+      const listener = (event) => {
+        // Do nothing if clicking ref's element or descendent elements
+        if (!ref.current || ref.current.contains(event.target)) {
+          return;
+        }
+        handler(event);
+      };
+      document.addEventListener("mousedown", listener);
+      return () => {
+        document.removeEventListener("mousedown", listener);
+      };
+    }, [ref, handler]);
   }
 
   return (
     <div className="menu">
-      <div ref={ref} className="menu__title" onClick={() => setOpen(!open)} >
+      <div ref={ref} className="menu__title" onClick={() => setOpen(!open)}>
         Menu
-          <i className="fas fa-caret-down menu__triangle"></i>
+        <i className="fas fa-caret-down menu__triangle"></i>
       </div>
       {open ? (
         <div className="menu__dropdown">
           <Link to="/" className="menu__dropdown__item">
             Home
-            </Link>
+          </Link>
           <Link to="/painting" className="menu__dropdown__item">
             Painting
-            </Link>
+          </Link>
           <Link to="/sculpture" className="menu__dropdown__item">
             Sculpture
-            </Link>
+          </Link>
         </div>
       ) : null}
     </div>
   );
-}
+};
 
 export default Menu;

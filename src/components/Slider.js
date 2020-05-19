@@ -39,19 +39,6 @@ const Slider = (post) => {
     });
   }, []);
 
-  // const slideLeft = (index, duration, multiplied = 1) => {
-  //   TweenLite.to(imageList.children[index], duration, {
-  //     x: -imageWidth * multiplied,
-  //     ease: Power3.easeout,
-  //   });
-  // };
-  // const slideRight = (index, duration, multiplied = 1) => {
-  //   TweenLite.to(imageList.children[index], duration, {
-  //     x: imageWidth * multiplied,
-  //     ease: Power3.easeout,
-  //   });
-  // };
-
   const scale = (index, duration) => {
     TweenLite.from(imageList.children[index], duration, {
       scale: 1.3,
@@ -74,6 +61,13 @@ const Slider = (post) => {
 
   const currentInt = (number) => parseInt(number.toString().substr(1, 1));
 
+  // const slideLeft = (index, duration, multiplied = 1) => {
+  //   TweenLite.to(imageList.children[index], duration, {
+  //     x: -imageWidth * multiplied,
+  //     ease: Power3.easeout,
+  //   });
+  // };
+
   const nextSlide = () => {
     x === -imageWidth * (src.length - 1) ? setX(0) : setX(x - imageWidth);
     const current = currentInt(x);
@@ -82,6 +76,13 @@ const Slider = (post) => {
     fadeOut(nan ? 0 : current, 1);
     fadeIn(nan || current === 6 ? 1 : next, 1);
   };
+
+  // const slideRight = (index, duration, multiplied = 1) => {
+  //   TweenLite.to(imageList.children[index], duration, {
+  //     x: imageWidth * multiplied,
+  //     ease: Power3.easeout,
+  //   });
+  // };
 
   const prevSlide = () => {
     x === 0 ? setX(-imageWidth * (src.length - 1)) : setX(x + imageWidth);
@@ -94,24 +95,41 @@ const Slider = (post) => {
     fadeIn(nan ? lastItem : prev, 1);
   };
 
-  // const arrowsIsVisible = () => {
-  //   document.getElementsByClassName("arrows");
-  //   document.setAttribute("style", "opacity:1");
-  // };
+  const isVisible = () => {
+    const arrows = document.querySelectorAll("div.arrows");
+    for (let i = 0; i < arrows.length; i++) {
+      arrows[i].classList.add("arrows--visible");
+      console.log(arrows[i].className);
+    }
+  };
+
+  const isNotVisible = () => {
+    const arrows = document.querySelectorAll("div.arrows");
+    for (let i = 0; i < arrows.length; i++) {
+      arrows[i].classList.remove("arrows--visible");
+      console.log(arrows[i].className);
+    }
+  };
 
   return (
     <div className="slider-content">
       <div className="slider">
-        <Link to="/" className="home">
-          <i className="fas fa-home"></i>
-        </Link>
+        <div className="close">
+          <Link to="/">
+            <p>close</p> <i className="fas fa-times cross"></i>
+          </Link>
+        </div>
         <div onClick={prevSlide} className="arrows">
           <span>
             <i className="fas fa-long-arrow-alt-left"></i>
           </span>
         </div>
 
-        <div className="slider__inner">
+        <div
+          className="slider__inner"
+          onMouseEnter={isVisible}
+          onMouseLeave={isNotVisible}
+        >
           <div className="slider__inner__image">
             <ul ref={(el) => (imageList = el)}>
               {data.artwork.map((item, index) => (
