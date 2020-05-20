@@ -11,6 +11,7 @@ const Slider = (post) => {
   // iteration pour l'index dynamique de la src et du state
   const src = data.artwork;
   const items = src.keys();
+  const currentInt = (number) => parseInt(number.toString().slice(1, 1));
 
   // calcul de l'img par rapport au profilepics pour set la class Active
   const urlProps = data.artwork;
@@ -59,8 +60,6 @@ const Slider = (post) => {
     });
   };
 
-  const currentInt = (number) => parseInt(number.toString().substr(1, 1));
-
   // const slideLeft = (index, duration, multiplied = 1) => {
   //   TweenLite.to(imageList.children[index], duration, {
   //     x: -imageWidth * multiplied,
@@ -95,21 +94,26 @@ const Slider = (post) => {
     fadeIn(nan ? lastItem : prev, 1);
   };
 
-  const isVisible = () => {
-    const arrows = document.querySelectorAll("div.arrows");
-    for (let i = 0; i < arrows.length; i++) {
-      arrows[i].classList.add("arrows--visible");
-      console.log(arrows[i].className);
-    }
+  const useHover = function () {
+    const divHover = useRef();
+    const [hovered, setHovered] = useState(false);
+
+    const enter = () => setHovered(true);
+    const leave = () => setHovered(false);
+
+    useEffect(() => {
+      divHover.current.addEventListener("mouseenter", enter);
+      divHover.current.addEventListener("mouseleave", leave);
+      return () => {
+        divHover.current.removeEventListener("mouseenter", enter);
+        divHover.current.removeEventListener("mouseleave", leave);
+      };
+    }, [divHover]);
+
+    return [divHover, hovered];
   };
 
-  const isNotVisible = () => {
-    const arrows = document.querySelectorAll("div.arrows");
-    for (let i = 0; i < arrows.length; i++) {
-      arrows[i].classList.remove("arrows--visible");
-      console.log(arrows[i].className);
-    }
-  };
+  const [divHover, hovered] = useHover();
 
   return (
     <div className="slider-content">
@@ -119,17 +123,18 @@ const Slider = (post) => {
             <p>close</p> <i className="fas fa-times cross"></i>
           </Link>
         </div>
-        <div onClick={prevSlide} className="arrows">
+        <div
+          onClick={prevSlide}
+          className={hovered ? "arrows arrows--visible" : "arrows"}
+        >
           <span>
             <i className="fas fa-long-arrow-alt-left"></i>
           </span>
         </div>
 
-        <div
-          className="slider__inner"
-          onMouseEnter={isVisible}
-          onMouseLeave={isNotVisible}
-        >
+        <div className="slider__inner" ref={divHover}>
+          {hovered ? console.log("OKOK") : null}
+
           <div className="slider__inner__image">
             <ul ref={(el) => (imageList = el)}>
               {data.artwork.map((item, index) => (
@@ -168,7 +173,14 @@ const Slider = (post) => {
           </div>
         </div>
 
-        <div onClick={nextSlide} className="arrows arrows__right">
+        <div
+          onClick={nextSlide}
+          className={
+            hovered
+              ? "arrows arrows__right arrows--visible"
+              : "arrows arrows__right"
+          }
+        >
           <span>
             <i className="fas fa-long-arrow-alt-right"></i>
           </span>
