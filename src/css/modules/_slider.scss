@@ -34,12 +34,11 @@ $secondary: #a09da6;
         position: relative;
 
         .close {
-            float: left;
+            right: 100px;
             top: 10px;
-            left: 100px;
             padding: 0 20px;
-
-            position: relative;
+            position: absolute;
+            z-index: 1;
             // background: #ecf0f3;
             // box-shadow: 4px 4px 4px 0px #d1d9e6 inset,
             //     -4px -4px 4px 0px #fff inset;
@@ -99,13 +98,22 @@ $secondary: #a09da6;
             opacity: 0;
             z-index: 1;
 
+
+
             &:hover {
-                box-shadow: 0px 0px 30px rgba(0, 0, 80, 0.1);
+                // box-shadow: 0px 0px 30px rgba(0, 0, 80, 0.1);
+                box-shadow: -4px -4px 4px 0px #e1e1e1 inset,
+                    4px 4px 4px 0px #e1e1e1 inset;
                 opacity: 1;
             }
 
             &__right {
                 right: 0;
+
+                &:hover {
+                    box-shadow: 4px 4px 4px 0px #e1e1e1 inset,
+                        -4px -4px 4px 0px #e1e1e1 inset,
+                }
             }
 
             &--visible {
@@ -120,24 +128,12 @@ $secondary: #a09da6;
             height: 600px;
 
             &__image {
-                // margin-left: 75px;
+                margin-left: 135px;
                 width: 768px;
                 height: 432px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-
-                // &:after {
-                //   content: "";
-                //   position: absolute;
-                //   width: 200px;
-                //   height: 200px;
-                //   background: #3f56da;
-                //   left: 140px;
-                //   top: 0;
-                //   border-radius: 100%;
-                //   z-index: -1;
-                // }
 
                 ul {
                     display: flex;
@@ -160,7 +156,7 @@ $secondary: #a09da6;
             }
 
             &__content {
-                padding-left: 30px;
+                padding-left: 50px;
                 width: 500px;
                 height: 600px;
                 display: flex;
@@ -169,12 +165,12 @@ $secondary: #a09da6;
                 ul {
                     position: absolute;
                     overflow: hidden;
-                    width: 500px;
+                    width: 400px;
                     height: 400px;
 
                     li {
-                        width: 500px;
-                        height: 400px;
+                        width: 100%;
+                        height: 100%;
                         color: $text;
                         display: flex;
                         align-items: center;
@@ -203,49 +199,11 @@ $secondary: #a09da6;
                             height: 12px;
                             width: 170px;
                             background: $yellow;
-                            opacity: 0.3;
+                            opacity: 0.5;
                             left: 0;
                             top: 235px;
+
                         }
-
-                        // &:nth-child(1) {
-                        //     &:after {
-                        //         content: "";
-                        //         position: absolute;
-                        //         height: 12px;
-                        //         width: 310px;
-                        //         background: $green;
-                        //         opacity: 0.3;
-                        //         left: 0;
-                        //         top: 206px;
-                        //     }
-                        // }
-
-                        // &:nth-child(2) {
-                        //     &:after {
-                        //         content: "";
-                        //         position: absolute;
-                        //         height: 12px;
-                        //         width: 148px;
-                        //         background: $green;
-                        //         opacity: 0.3;
-                        //         left: 54px;
-                        //         top: 126px;
-                        //     }
-                        // }
-
-                        // &:nth-child(3) {
-                        //     &:after {
-                        //         content: "";
-                        //         position: absolute;
-                        //         height: 12px;
-                        //         width: 280px;
-                        //         background: $green;
-                        //         opacity: 0.3;
-                        //         left: 144px;
-                        //         top: 166px;
-                        //     }
-                        // }
 
                         .content__inner {
                             width: 500px;
