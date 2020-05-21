@@ -12,12 +12,12 @@ const Painters = (props) => {
     description,
     site,
   } = post;
+
   const path = {
     pathname: "/artist/" + lastName,
     search: "?id=" + id,
     hash: "#Painters",
   };
-  console.log(path);
 
   const wikiUrl = `https://en.wikipedia.org/wiki/
                     ${
@@ -65,11 +65,9 @@ const Painters = (props) => {
                 href={site}
                 onClick={() => window.open(`${site}`, "_blank")}
               >
-                <Link to={path}>
-                  <div className="icon-container">
-                    <i className="fas fa-external-link-alt"></i>
-                  </div>
-                </Link>
+                <div className="icon-container">
+                  <i className="fas fa-external-link-alt"></i>
+                </div>
               </a>
             </div>
           </div>
