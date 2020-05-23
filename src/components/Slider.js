@@ -2,20 +2,19 @@ import React, { useRef, useEffect, useState } from "react";
 import { TweenLite, Power3 } from "gsap";
 import { Link } from "react-router-dom";
 
-const Slider = (post) => {
-  const data = post.post;
-  const name = `${
-    data.firstName == null ? data.lastName : data.firstName + data.lastName
-  }`;
+const Slider = (props) => {
+  const {
+    post: { firstName, lastName, artwork },
+  } = props;
+  // const { artwork } = post;
+
+  const name = `${firstName == null ? lastName : firstName + lastName}`;
 
   // iteration pour l'index dynamique de la src et du state
-  const src = data.artwork;
-  const items = src.keys();
-  const currentInt = (number) => parseInt(number.toString().slice(1, 1));
+  let src = artwork;
 
-  // calcul de l'img par rapport au profilepics pour set la class Active
-  const urlProps = data.artwork;
-  // console.log(urlProps);
+  const items = src.keys();
+  const currentInt = (number) => parseInt(number.toString().slice(1, 2));
 
   let i = [1];
 
@@ -23,16 +22,14 @@ const Slider = (post) => {
   let sliderList = useRef(null);
   let slide = useRef(null);
 
-  const imageWidth = 100;
+  const imageWidth = 768;
 
   const [x, setX] = useState(0);
-  // const [state, setState] = useState({
 
-  //   // isActive: true,
-  //   // currentSlide:true
-  //   // nextSlide:false
-  //   //prevSlide:false
-  // });
+  const [state, setState] = useState({
+    isActive: true,
+    isVisible: false,
+  });
 
   useEffect(() => {
     TweenLite.to(sliderList.children[0], 0, {
@@ -60,18 +57,47 @@ const Slider = (post) => {
     });
   };
 
-  // const slideLeft = (index, duration, multiplied = 1) => {
-  //   TweenLite.to(imageList.children[index], duration, {
-  //     x: -imageWidth * multiplied,
-  //     ease: Power3.easeout,
-  //   });
-  // };
+  const slideLeft = (index, duration, multiplied = 1) => {
+    TweenLite.to(imageList.children[index], duration, {
+      x: -imageWidth * multiplied,
+      ease: Power3.easeout,
+    });
+  };
 
   const nextSlide = () => {
-    x === -imageWidth * (src.length - 1) ? setX(0) : setX(x - imageWidth);
-    const current = currentInt(x);
+    const length = imageList.children.length;
+    const lastIndex = length - 1;
+    const index = x / imageWidth;
+    const current = currentInt(index);
     const next = current + 1;
+    const last = current - 1;
     const nan = isNaN(current);
+
+    // console.log(last);
+    console.log(lastIndex === current);
+
+    console.log(lastIndex);
+    // console.log(length);
+
+    // console.log(length !== current);
+    console.log(current);
+    // console.log(next);
+
+    x === -imageWidth * (length - 1) ? setX(0) : setX(x - imageWidth);
+
+    // slideLeft(0, 1);
+    slideLeft(nan ? 0 : next, 1);
+    slideLeft(1, 1);
+    slideLeft(length !== current ? next : setX(0), 1);
+
+    scale(1, 1);
+    slideLeft(2, 1);
+    slideLeft(2, 0);
+
+    // slideLeft(0, 1, 0);
+    // slideLeft(nan ? 0 : current, 1, nan ? last : current);
+    // slideLeft(1, 1, 1);
+    // slideLeft(nan ? 1 : current, 1, nan ? 1 : current);
     fadeOut(nan ? 0 : current, 1);
     fadeIn(nan || current === 6 ? 1 : next, 1);
   };
@@ -114,13 +140,29 @@ const Slider = (post) => {
   };
 
   const [divHover, hovered] = useHover();
+  // const srcArray = ([] = src.match(/\p{Decimal_Number}+/gu)[0]);
+  // const regexInt = /\p{Decimal_Number}+/gu;
+  // const indexOf = src.match("tamer8dddsf1qsdda5fdsf654");
+  // console.log(typeof indexOf);
+
+  const match = [];
+  const findSrcNumber = () => {
+    for (const items of src) {
+      const item = items.src;
+      const resultInt = item.match(/\p{Decimal_Number}+/gu)[0];
+      match.push(resultInt);
+    }
+    return match;
+  };
+  findSrcNumber();
 
   return (
     <div className="slider-content">
       <div className="slider">
         <div className="close">
           <Link to="/">
-            <p>close</p> <i className="fas fa-times cross"></i>
+            <p>close</p>
+            <i className="fas fa-times cross"></i>
           </Link>
         </div>
         <div
@@ -133,24 +175,23 @@ const Slider = (post) => {
         </div>
 
         <div className="slider__inner" ref={divHover}>
-          {hovered ? console.log("OKOK") : null}
-
           <div className="slider__inner__image">
             <ul ref={(el) => (imageList = el)}>
-              {data.artwork.map((item, index) => (
+              {artwork.map(({ src, alt }, index) => (
                 <li
                   ref={slide}
                   key={index}
-                  style={{ transform: `translate(${x}%)` }}
-                  // className={`${
-                  //   urlProps[index].src === item.src
-                  //     ? state.isActive
-                  //       ? "active"
-                  //       : ""
-                  //     : ""
-                  //   }`}
+                  // style={{ transform: `translate(${x}%)` }}
+                  className={`${
+                    index === match[index] - 1 ? "active" : state.isVisible
+                  }`}
                 >
-                  <img key={"key" + index} src={item.src} alt={item.alt} />;
+                  {console.log(index)}
+                  {console.log(typeof index)}
+                  {console.log(match[index])}
+                  {console.log(typeof match)}
+                  {console.log("##############################")}
+                  <img key={"key" + index} src={src} alt={alt} />;
                 </li>
               ))}
             </ul>
@@ -158,14 +199,12 @@ const Slider = (post) => {
 
           <div className="slider__inner__content">
             <ul ref={(el) => (sliderList = el)}>
-              {data.artwork.map((item, index) => (
+              {artwork.map(({ alt, location, year }, index) => (
                 <li key={index}>
                   <div className="content__inner">
-                    <p className="alt"> {item.alt} </p>
+                    <p className="alt"> {alt} </p>
                     <h3 className="name"> {name} </h3>
-                    <h4 className="details">
-                      {item.location + " " + item.year}
-                    </h4>
+                    <h4 className="details">{location + " " + year}</h4>
                   </div>
                 </li>
               ))}

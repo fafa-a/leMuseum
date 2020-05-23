@@ -19,10 +19,9 @@ const Painters = (props) => {
     hash: "#Painters",
   };
 
-  const wikiUrl = `https://en.wikipedia.org/wiki/
-                    ${
-                      firstName == null ? lastName : firstName + "_" + lastName
-                    }`;
+  const wikiUrl = `https://en.wikipedia.org/wiki/${
+    firstName == null ? lastName : firstName + "_" + lastName
+  }`;
 
   return (
     <div className="link">
