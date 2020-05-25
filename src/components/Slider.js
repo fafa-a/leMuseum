@@ -16,20 +16,16 @@ const Slider = (props) => {
   const items = src.keys();
   const currentInt = (number) => parseInt(number.toString().slice(1, 2));
 
-  let i = [1];
-
   let imageList = useRef(null);
   let sliderList = useRef(null);
   let slide = useRef(null);
 
   const imageWidth = 768;
-
-  const [x, setX] = useState(0);
-
   const [state, setState] = useState({
     isActive: true,
     isVisible: false,
   });
+  const [x, setX] = useState(0);
 
   useEffect(() => {
     TweenLite.to(sliderList.children[0], 0, {
@@ -64,59 +60,114 @@ const Slider = (props) => {
     });
   };
 
+  const slideRight = (index, duration, multiplied = 1) => {
+    TweenLite.to(imageList.children[index], duration, {
+      x: imageWidth * multiplied,
+      ease: Power3.easeout,
+    });
+  };
+
   const nextSlide = () => {
+    const lastChild = imageList.lastChild.classList.value;
+
     const length = imageList.children.length;
     const lastIndex = length - 1;
-    const index = x / imageWidth;
-    const current = currentInt(index);
-    const next = current + 1;
-    const last = current - 1;
-    const nan = isNaN(current);
+    const ix = x / imageWidth;
 
-    // console.log(last);
-    console.log(lastIndex === current);
-
-    console.log(lastIndex);
-    // console.log(length);
-
-    // console.log(length !== current);
-    console.log(current);
-    // console.log(next);
+    const index = currentInt(ix);
+    const next = index + 1;
+    const last = index - 1;
+    const nan = isNaN(index);
+    const target = imageList.children[nan ? ix : index].classList.value;
 
     x === -imageWidth * (length - 1) ? setX(0) : setX(x - imageWidth);
 
-    // slideLeft(0, 1);
-    slideLeft(nan ? 0 : next, 1);
-    slideLeft(1, 1);
-    slideLeft(length !== current ? next : setX(0), 1);
+    // console.log(`ix = ${ix}`);
 
-    scale(1, 1);
-    slideLeft(2, 1);
-    slideLeft(2, 0);
+    console.log(`x = ${x}`);
+    console.log(`ix = ${ix}`);
+    console.log(`index = ${index}`);
+    console.log(`next = ${next}`);
+    console.log(`last = ${last}`);
+    console.log(`lastChild = ${lastChild}`);
+
+    console.log(`lastIndex = ${lastIndex}`);
+    console.log(`target = ${target}`);
+    console.log(`new = ${nan ? ix : index}`);
+
+    // console.log(
+    //   imageList.children[index].classList.contains(`active${lastIndex}`)
+    // );
+
+    // console.log(
+    //   imageList.children[nan ? ix : index].contains(`active${next}`) ===
+    //     imageList.children[lastIndex].contains(`active${next}`)
+    // );
+
+    if (imageList.children[nan ? ix : index].classList.contains(`active${1}`)) {
+      slideLeft(nan ? ix : null, nan ? 1 : null);
+      slideLeft(nan ? ix + 1 : null, 1, nan ? 1 : null);
+      scale(1, 1);
+      slideLeft(2, 1);
+      // slideLeft(2, 0);
+      console.log("first step");
+    } else if (
+      imageList.children[index].classList.contains(`active${lastIndex}`)
+    ) {
+      // slideLeft(next + 1, 1, next);
+      slideLeft(next, 1, next);
+      slideLeft(index, 1, next);
+
+      slideRight(1, 0, 2);
+      slideLeft(0, 1, 2);
+      scale(next, 1);
+
+      console.log("last step");
+    } else if (imageList.children[index].classList.contains(`active${next}`)) {
+      slideLeft(next + 1, 1, next);
+      slideLeft(next, 1, next);
+      slideLeft(index, 1, next);
+      scale(next, 1);
+
+      console.log("second step");
+    }
+    // else if (
+    //   lastChild ===
+    //   imageList.children[index].classList.contains(`active${next}`)
+    // ) {
+    //   console.log("third step");
+    // }
+    // console.log(
+    //   imageList.children[next].classList.contains(`active${index}`)
+    // );
+    // console.log(last);
+    // console.log(lastIndex === index);
+
+    // console.log(lastIndex);
+    // console.log(length);
+
+    // console.log(length !== index);
+    // console.log(index);
+    // console.log(next);
+
+    // slideLeft(0, 1);
 
     // slideLeft(0, 1, 0);
-    // slideLeft(nan ? 0 : current, 1, nan ? last : current);
+    // slideLeft(nan ? 0 : index, 1, nan ? last : index);
     // slideLeft(1, 1, 1);
-    // slideLeft(nan ? 1 : current, 1, nan ? 1 : current);
-    fadeOut(nan ? 0 : current, 1);
-    fadeIn(nan || current === 6 ? 1 : next, 1);
+    // slideLeft(nan ? 1 : index, 1, nan ? 1 : index);
+    fadeOut(nan ? 0 : index, 1);
+    fadeIn(nan || index === 6 ? 1 : next, 1);
   };
-
-  // const slideRight = (index, duration, multiplied = 1) => {
-  //   TweenLite.to(imageList.children[index], duration, {
-  //     x: imageWidth * multiplied,
-  //     ease: Power3.easeout,
-  //   });
-  // };
 
   const prevSlide = () => {
     x === 0 ? setX(-imageWidth * (src.length - 1)) : setX(x + imageWidth);
-    const current = currentInt(x);
-    const prev = current - 1;
-    const nan = isNaN(current);
+    const index = currentInt(x);
+    const prev = index - 1;
+    const nan = isNaN(index);
     const lastItem = src.length - 1;
 
-    fadeOut(nan ? 0 : current, 1);
+    fadeOut(nan ? 0 : index, 1);
     fadeIn(nan ? lastItem : prev, 1);
   };
 
@@ -140,6 +191,7 @@ const Slider = (props) => {
   };
 
   const [divHover, hovered] = useHover();
+
   // const srcArray = ([] = src.match(/\p{Decimal_Number}+/gu)[0]);
   // const regexInt = /\p{Decimal_Number}+/gu;
   // const indexOf = src.match("tamer8dddsf1qsdda5fdsf654");
@@ -182,16 +234,11 @@ const Slider = (props) => {
                   ref={slide}
                   key={index}
                   // style={{ transform: `translate(${x}%)` }}
-                  className={`${
-                    index === match[index] - 1 ? "active" : state.isVisible
-                  }`}
+                  className={
+                    index === match[index] - 1 ? `active${match[index]}` : ""
+                  }
                 >
-                  {console.log(index)}
-                  {console.log(typeof index)}
-                  {console.log(match[index])}
-                  {console.log(typeof match)}
-                  {console.log("##############################")}
-                  <img key={"key" + index} src={src} alt={alt} />;
+                  <img key={"key" + index} src={src} alt={alt} />
                 </li>
               ))}
             </ul>
@@ -204,7 +251,7 @@ const Slider = (props) => {
                   <div className="content__inner">
                     <p className="alt"> {alt} </p>
                     <h3 className="name"> {name} </h3>
-                    <h4 className="details">{location + " " + year}</h4>
+                    <h4 className="details">{`${location} ${year}`}</h4>
                   </div>
                 </li>
               ))}
