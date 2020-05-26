@@ -27,6 +27,17 @@ const Slider = (props) => {
   });
   const [x, setX] = useState(0);
 
+  const match = [];
+  const findSrcNumber = () => {
+    for (const items of src) {
+      const item = items.src;
+      const resultInt = item.match(/\p{Decimal_Number}+/gu)[0];
+      match.push(resultInt);
+    }
+    return match;
+  };
+  findSrcNumber();
+
   useEffect(() => {
     TweenLite.to(sliderList.children[0], 0, {
       opacity: 1,
@@ -68,96 +79,68 @@ const Slider = (props) => {
   };
 
   const nextSlide = () => {
+    const first = imageList.firstChild.classList;
     const lastChild = imageList.lastChild.classList.value;
-
     const length = imageList.children.length;
     const lastIndex = length - 1;
     const ix = x / imageWidth;
-
     const index = currentInt(ix);
     const next = index + 1;
     const last = index - 1;
     const nan = isNaN(index);
     const target = imageList.children[nan ? ix : index].classList.value;
+    const end = imageList.children[lastIndex - 1].classList.value;
 
     x === -imageWidth * (length - 1) ? setX(0) : setX(x - imageWidth);
-
+    console.clear();
+    // console.log(`x = ${x}`);
     // console.log(`ix = ${ix}`);
-
-    console.log(`x = ${x}`);
-    console.log(`ix = ${ix}`);
     console.log(`index = ${index}`);
     console.log(`next = ${next}`);
     console.log(`last = ${last}`);
-    console.log(`lastChild = ${lastChild}`);
-
+    console.log(`length = ${length}`);
     console.log(`lastIndex = ${lastIndex}`);
     console.log(`target = ${target}`);
-    console.log(`new = ${nan ? ix : index}`);
+    // console.log(`new = ${nan ? ix : index}`);
+    console.log(`end = ${end}`);
+    // console.log(end === target);
 
-    // console.log(
-    //   imageList.children[index].classList.contains(`active${lastIndex}`)
-    // );
+    /****************************
+     *
+     *
+     *     */
+    if (target === `active${length}`) {
+      slideLeft(lastIndex ? index : null, 1, lastIndex ? next : null); // sort img du cadre
+      slideRight(0, 0, 1); // remets img a droite
+      slideLeft(0, 1, 0);
+      slideLeft(1, 0, 0);
+      console.log(`active${length}`);
 
-    // console.log(
-    //   imageList.children[nan ? ix : index].contains(`active${next}`) ===
-    //     imageList.children[lastIndex].contains(`active${next}`)
-    // );
+      scale(0, 1); // effet de transition
+    } else if (end === target) {
+      slideLeft(lastIndex ? index : null, 1, lastIndex ? next : null); // sort img du cadre
+      slideLeft(length ? next : null, 1, length ? next : null); // mets img dans le cadre
 
-    if (imageList.children[nan ? ix : index].classList.contains(`active${1}`)) {
-      slideLeft(nan ? ix : null, nan ? 1 : null);
-      slideLeft(nan ? ix + 1 : null, 1, nan ? 1 : null);
-      scale(1, 1);
-      slideLeft(2, 1);
-      // slideLeft(2, 0);
-      console.log("first step");
+      fadeOut(nan ? 0 : index, 1); // le content disparait
+      fadeIn(nan || index === 6 ? 1 : next, 1); // le content apparait
+
+      console.log(`target = ${target}`);
     } else if (
-      imageList.children[index].classList.contains(`active${lastIndex}`)
+      imageList.children[nan ? ix : index].classList.contains(
+        `active${nan ? 1 : next}`
+      )
     ) {
-      // slideLeft(next + 1, 1, next);
-      slideLeft(next, 1, next);
-      slideLeft(index, 1, next);
-
-      slideRight(1, 0, 2);
-      slideLeft(0, 1, 2);
-      scale(next, 1);
-
-      console.log("last step");
-    } else if (imageList.children[index].classList.contains(`active${next}`)) {
-      slideLeft(next + 1, 1, next);
-      slideLeft(next, 1, next);
-      slideLeft(index, 1, next);
-      scale(next, 1);
-
-      console.log("second step");
+      console.log("mouvement");
+      slideLeft(nan ? ix : index, 1, nan ? 1 : next); // sort img du cadre
+      slideLeft(nan ? 1 : next, 1, nan ? 1 : next); // mets img dans le cadre
+      slideLeft(nan ? 2 : next + 1, 0, nan ? 1 : next); // mets img dans la file
+      slideRight(last, 0, next); //remets img a droite
     }
-    // else if (
-    //   lastChild ===
-    //   imageList.children[index].classList.contains(`active${next}`)
-    // ) {
-    //   console.log("third step");
-    // }
-    // console.log(
-    //   imageList.children[next].classList.contains(`active${index}`)
-    // );
-    // console.log(last);
-    // console.log(lastIndex === index);
+    console.log("fade");
 
-    // console.log(lastIndex);
-    // console.log(length);
-
-    // console.log(length !== index);
-    // console.log(index);
-    // console.log(next);
-
-    // slideLeft(0, 1);
-
-    // slideLeft(0, 1, 0);
-    // slideLeft(nan ? 0 : index, 1, nan ? last : index);
-    // slideLeft(1, 1, 1);
-    // slideLeft(nan ? 1 : index, 1, nan ? 1 : index);
-    fadeOut(nan ? 0 : index, 1);
-    fadeIn(nan || index === 6 ? 1 : next, 1);
+    fadeIn(nan || index === length ? 1 : next, 1); // le content apparait
+    fadeOut(nan || index === lastIndex ? 0 : index, 1); // le content disparait
+    scale(nan ? 1 : next, 1); // effet de transition
   };
 
   const prevSlide = () => {
@@ -196,17 +179,6 @@ const Slider = (props) => {
   // const regexInt = /\p{Decimal_Number}+/gu;
   // const indexOf = src.match("tamer8dddsf1qsdda5fdsf654");
   // console.log(typeof indexOf);
-
-  const match = [];
-  const findSrcNumber = () => {
-    for (const items of src) {
-      const item = items.src;
-      const resultInt = item.match(/\p{Decimal_Number}+/gu)[0];
-      match.push(resultInt);
-    }
-    return match;
-  };
-  findSrcNumber();
 
   return (
     <div className="slider-content">
