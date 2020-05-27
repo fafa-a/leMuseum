@@ -100,9 +100,11 @@ const Slider = (props) => {
     console.log(`last = ${last}`);
     console.log(`length = ${length}`);
     console.log(`lastIndex = ${lastIndex}`);
-    console.log(`target = ${target}`);
+    console.log("**********************");
+
+    // console.log(`target = ${target}`);
     // console.log(`new = ${nan ? ix : index}`);
-    console.log(`end = ${end}`);
+    // console.log(`end = ${end}`);
     // console.log(end === target);
 
     /****************************
@@ -111,37 +113,40 @@ const Slider = (props) => {
      *     */
     if (target === `active${length}`) {
       slideLeft(lastIndex ? index : null, 1, lastIndex ? next : null); // sort img du cadre
-      slideRight(0, 0, 1); // remets img a droite
+      slideRight(0, 0, 1); // remets img a droite de la file
       slideLeft(0, 1, 0);
       slideLeft(1, 0, 0);
-      console.log(`active${length}`);
 
+      fadeOut(lastIndex, 1);
+      fadeIn(0, 1);
       scale(0, 1); // effet de transition
     } else if (end === target) {
       slideLeft(lastIndex ? index : null, 1, lastIndex ? next : null); // sort img du cadre
       slideLeft(length ? next : null, 1, length ? next : null); // mets img dans le cadre
 
-      fadeOut(nan ? 0 : index, 1); // le content disparait
-      fadeIn(nan || index === 6 ? 1 : next, 1); // le content apparait
-
-      console.log(`target = ${target}`);
+      fadeOut(index, 1); // le content disparait
+      fadeIn(next, 1); // le content apparait
+      scale(next, 1); // effet de transition
     } else if (
       imageList.children[nan ? ix : index].classList.contains(
         `active${nan ? 1 : next}`
       )
     ) {
-      console.log("mouvement");
       slideLeft(nan ? ix : index, 1, nan ? 1 : next); // sort img du cadre
       slideLeft(nan ? 1 : next, 1, nan ? 1 : next); // mets img dans le cadre
       slideLeft(nan ? 2 : next + 1, 0, nan ? 1 : next); // mets img dans la file
-      slideRight(last, 0, next); //remets img a droite
-    }
-    console.log("fade");
 
-    fadeIn(nan || index === length ? 1 : next, 1); // le content apparait
-    fadeOut(nan || index === lastIndex ? 0 : index, 1); // le content disparait
-    scale(nan ? 1 : next, 1); // effet de transition
+      fadeOut(nan ? 0 : index, 1); // le content disparait
+      fadeIn(nan ? 1 : next, 1); // le content apparait
+      scale(nan ? 1 : next, 1); // effet de transition
+    }
+    slideRight(last, 0, next); //remets img a droite de la file
   };
+
+  /***********************
+   *
+   *
+   */
 
   const prevSlide = () => {
     x === 0 ? setX(-imageWidth * (src.length - 1)) : setX(x + imageWidth);
