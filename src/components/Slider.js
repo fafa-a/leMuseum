@@ -79,84 +79,80 @@ const Slider = (props) => {
   };
 
   const nextSlide = () => {
-    const first = imageList.firstChild.classList;
-    const lastChild = imageList.lastChild.classList.value;
     const length = imageList.children.length;
     const lastIndex = length - 1;
     const ix = x / imageWidth;
-    const index = currentInt(ix);
-    const next = index + 1;
-    const last = index - 1;
-    const nan = isNaN(index);
-    const target = imageList.children[nan ? ix : index].classList.value;
-    const end = imageList.children[lastIndex - 1].classList.value;
+    const currentX = currentInt(ix);
+    const nan = isNaN(currentX);
+
+    const index = nan ? 0 : currentX;
+    const nextIndex = index === lastIndex ? 0 : index + 1;
+    const prevIndex = index === 0 ? lastIndex : index - 1;
 
     x === -imageWidth * (length - 1) ? setX(0) : setX(x - imageWidth);
     console.clear();
     // console.log(`x = ${x}`);
-    // console.log(`ix = ${ix}`);
+    console.log(`ix = ${ix}`);
+    console.log(`currentX = ${currentX}`);
+    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>");
     console.log(`index = ${index}`);
-    console.log(`next = ${next}`);
-    console.log(`last = ${last}`);
-    console.log(`length = ${length}`);
-    console.log(`lastIndex = ${lastIndex}`);
-    console.log("**********************");
+    console.log(`<<prevIndex = ${prevIndex}`);
+    console.log(`nextIndex>> = ${nextIndex}`);
+    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>");
 
-    // console.log(`target = ${target}`);
-    // console.log(`new = ${nan ? ix : index}`);
-    // console.log(`end = ${end}`);
-    // console.log(end === target);
+    /*******
+     * NEW VERSION
+     */
+    if (imageList.children[index].classList.contains(`active${index + 1}`)) {
+      slideLeft(index, 1, nextIndex); // decale a gauche
+      slideLeft(nextIndex, 1, nextIndex); // img dans le cadre
+      slideLeft(nextIndex + 1, 0, nextIndex); // decale à gauche
 
-    /****************************
-     *
-     *
-     *     */
-    if (target === `active${length}`) {
-      slideLeft(lastIndex ? index : null, 1, lastIndex ? next : null); // sort img du cadre
-      slideRight(0, 0, 1); // remets img a droite de la file
-      slideLeft(0, 1, 0);
-      slideLeft(1, 0, 0);
-
-      fadeOut(lastIndex, 1);
-      fadeIn(0, 1);
-      scale(0, 1); // effet de transition
-    } else if (end === target) {
-      slideLeft(lastIndex ? index : null, 1, lastIndex ? next : null); // sort img du cadre
-      slideLeft(length ? next : null, 1, length ? next : null); // mets img dans le cadre
-
+      scale(nextIndex, 1); // effet de transition
       fadeOut(index, 1); // le content disparait
-      fadeIn(next, 1); // le content apparait
-      scale(next, 1); // effet de transition
-    } else if (
-      imageList.children[nan ? ix : index].classList.contains(
-        `active${nan ? 1 : next}`
-      )
-    ) {
-      slideLeft(nan ? ix : index, 1, nan ? 1 : next); // sort img du cadre
-      slideLeft(nan ? 1 : next, 1, nan ? 1 : next); // mets img dans le cadre
-      slideLeft(nan ? 2 : next + 1, 0, nan ? 1 : next); // mets img dans la file
-
-      fadeOut(nan ? 0 : index, 1); // le content disparait
-      fadeIn(nan ? 1 : next, 1); // le content apparait
-      scale(nan ? 1 : next, 1); // effet de transition
+      fadeIn(nextIndex, 1); // le content apparait
     }
-    slideRight(last, 0, next); //remets img a droite de la file
   };
 
-  /***********************
-   *
-   *
-   */
-
   const prevSlide = () => {
-    x === 0 ? setX(-imageWidth * (src.length - 1)) : setX(x + imageWidth);
-    const index = currentInt(x);
-    const prev = index - 1;
-    const nan = isNaN(index);
-    const lastItem = src.length - 1;
+    const length = imageList.children.length;
+    const lastIndex = length - 1;
+    const ix = x / imageWidth;
+    const currentX = currentInt(ix);
+    const nan = isNaN(currentX);
 
-    fadeOut(nan ? 0 : index, 1);
-    fadeIn(nan ? lastItem : prev, 1);
+    const index = nan ? lastIndex : lastIndex - currentX;
+    const nextIndex = index === lastIndex ? 0 : index + 1;
+    const prevIndex = index === 1 ? lastIndex : index - 1;
+
+    const target = imageList.children[index].classList.value;
+
+    x === -imageWidth * (length - 1) ? setX(0) : setX(x - imageWidth);
+    console.clear();
+    // console.log(`x = ${x}`);
+    console.log(`ix = ${ix}`);
+    // console.log(`next = ${next}`);
+    // console.log(`nan = ${nan}`);
+    console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<");
+    // console.log(`classe = ${target}`);
+    // console.log(`length = ${length}`);
+    console.log(`index = ${index}`);
+    console.log(`<<prevIndex = ${prevIndex}`);
+    console.log(`nextIndex>> = ${nextIndex}`);
+    console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<");
+
+    /*******
+     * NEW VERSION
+     */
+    if (imageList.children[index].classList.contains(`active${index + 1}`)) {
+      slideLeft(index, 0, index + 1); // img a gauche
+      slideRight(index, 1, -index); // img dans le cadre
+      slideRight(nextIndex, 1, nan ? 1 : -index); // decale à droite
+
+      scale(index, 1); // effet de transition
+      fadeOut(nextIndex, 1); // le content disparait
+      fadeIn(index, 1); // le content apparait
+    }
   };
 
   const useHover = function () {
@@ -179,11 +175,6 @@ const Slider = (props) => {
   };
 
   const [divHover, hovered] = useHover();
-
-  // const srcArray = ([] = src.match(/\p{Decimal_Number}+/gu)[0]);
-  // const regexInt = /\p{Decimal_Number}+/gu;
-  // const indexOf = src.match("tamer8dddsf1qsdda5fdsf654");
-  // console.log(typeof indexOf);
 
   return (
     <div className="slider-content">
@@ -216,6 +207,7 @@ const Slider = (props) => {
                   }
                 >
                   <img key={"key" + index} src={src} alt={alt} />
+                  <h2>{index}</h2>
                 </li>
               ))}
             </ul>
