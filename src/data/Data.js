@@ -5,7 +5,7 @@ const data = [
         id: 1,
         firstName: null,
         lastName: "Banksy",
-        profilePic: require("../images/Banksy/Banksy.jpg"),
+        profilePic: require("../images/banksy/banksy.jpg"),
         artwork: [
           {
             src: require("../images/Banksy/Banksy1.jpg"),
